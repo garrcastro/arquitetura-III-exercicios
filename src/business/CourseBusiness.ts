@@ -13,8 +13,8 @@ export class CourseBusiness {
   public getCourses = async (input: any) => {
     const { q } = input
 
-    const courseDatabase = new CourseDatabase()
-    const coursesDB = await courseDatabase.findCourses(q)
+    
+    const coursesDB = await this.courseDatabase.findCourses(q)
 
     const courses: Course[] = coursesDB.map((courseDB) => new Course(
       courseDB.id,

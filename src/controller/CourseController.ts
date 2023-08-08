@@ -15,8 +15,8 @@ export class CourseController {
         q: req.query.q
       }
 
-      const courseBusiness = new CourseBusiness()
-      const output = await courseBusiness.getCourses(input)
+      
+      const output = await this.courseBusiness.getCourses(input)
 
       res.status(200).send(output)
     } catch (error) {

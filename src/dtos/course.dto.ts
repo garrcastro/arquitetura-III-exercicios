@@ -8,9 +8,9 @@ export interface CreateCourseInputDTO {
 
 export interface EditCourseInputDTO {
     idToEdit: string,
-    id: string,
-    name: string,
-    lessons: number
+    id?: string,
+    name?: string,
+    lessons?: number
 }
 
 export interface DeleteCourseInputDTO {
@@ -58,15 +58,15 @@ export const EditCourseSchema = z.object({
         invalid_type_error:"'id' deve ser do tipo string."
     }),
     id: z.string({
-        required_error: "'id' é obrigatória.",
+        
         invalid_type_error: "'id deve ser do tipo string."
-    }).min(1, "'id' deve ter pelo menos um caractere."),
+    }).min(1, "'id' deve ter pelo menos um caractere.").optional(),
     name: z.string({
-        required_error: "'name' é obrigatório.",
+        
         invalid_type_error: "'name' deve ser do tipo string."
-    }).min(2, "'name' deve possuir pelo menos dois caracteres."),
+    }).min(2, "'name' deve possuir pelo menos dois caracteres.").optional(),
     lessons: z.number({
-        required_error: "'price' é obrigatório.",
+        
         invalid_type_error: "'price' deve ser do tipo number."
-    })
+    }).gt(0, "O valor de 'lessons' deve ser maior que 0.").optional()
 }).transform(data => data as EditCourseInputDTO)
